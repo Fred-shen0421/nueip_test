@@ -1,0 +1,27 @@
+*{
+  box-sizing: border-box;
+}
+
+.tile{
+  font-size: 22px;
+}
+
+.table{
+  border: 4px solid #000;
+}
+
+.table th{
+  border: 2px solid #fff;
+  background-color: #333;
+  color: #fff;
+}
+
+.table tr{
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table td{
+  border: 2px solid #fff;
+  background-color: lightgray;
+}
