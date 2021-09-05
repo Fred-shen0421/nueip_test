@@ -5,36 +5,52 @@ $(document).ready(function () {
   ajaxobj.getall();
 
   // 新增按鈕
-  $("#addbutton").click(function () {
-      $("#dialog-addconfirm").dialog({
-          resizable: true,
-          height: $(window).height() * 0.4,// dialog視窗度
-          width: $(window).width() * 0.4,
-          modal: true,
-          buttons: {
-              // 自訂button名稱
-              "新增": function (e) {
-                  var url = "ajax/ajaxCard";
-                  var cnname = $("#addcnname").val();
-                  var enname = $("#addenname").val();
-                  var sex = $('input:radio:checked[name="addsex"]').val();
-                  var ajaxobj = new AjaxObject(url, 'json');
-                  ajaxobj.cnname = cnname;
-                  ajaxobj.enname = enname;
-                  ajaxobj.sex = sex;
-                  ajaxobj.add();
+  var exampleModal = document.getElementById('exampleModal')
+  exampleModal.addEventListener('show.bs.modal', function (event) {
+  // Button that triggered the modal
+  var button = event.relatedTarget
+  // Extract info from data-bs-* attributes
+  var recipient = button.getAttribute('data-bs-whatever')
+  // If necessary, you could initiate an AJAX request here
+  // and then do the updating in a callback.
+  //
+  // Update the modal's content.
+  var modalTitle = exampleModal.querySelector('.modal-title')
+  var modalBodyInput = exampleModal.querySelector('.modal-body input')
 
-                  e.preventDefault(); // avoid to execute the actual submit of the form.
-              },
-              "重新填寫": function () {
-                  $("#addform")[0].reset();
-              },
-              "取消": function () {
-                  $(this).dialog("close");
-              }
-          }
-      });
+  modalTitle.textContent = 'New message to ' + recipient
+  modalBodyInput.value = recipient
   })
+  // $("#addbutton").click(function () {
+  //     $("#dialog-addconfirm").dialog({
+  //         resizable: true,
+  //         height: $(window).height() * 0.4,// dialog視窗度
+  //         width: $(window).width() * 0.4,
+  //         modal: true,
+  //         buttons: {
+  //             // 自訂button名稱
+  //             "新增": function (e) {
+  //                 var url = "ajax/ajaxCard";
+  //                 var cnname = $("#addcnname").val();
+  //                 var enname = $("#addenname").val();
+  //                 var sex = $('input:radio:checked[name="addsex"]').val();
+  //                 var ajaxobj = new AjaxObject(url, 'json');
+  //                 ajaxobj.cnname = cnname;
+  //                 ajaxobj.enname = enname;
+  //                 ajaxobj.sex = sex;
+  //                 ajaxobj.add();
+
+  //                 e.preventDefault(); // avoid to execute the actual submit of the form.
+  //             },
+  //             "重新填寫": function () {
+  //                 $("#addform")[0].reset();
+  //             },
+  //             "取消": function () {
+  //                 $(this).dialog("close");
+  //             }
+  //         }
+  //     });
+  // })
   // 搜尋按鈕
   $("#searchbutton").click(function () {
       $("#dialog-searchconfirm").dialog({
@@ -104,8 +120,8 @@ function refreshTable(data) {
       row.append($("<td></td>").html(item.cnname));
       row.append($("<td></td>").html(item.enname));
       row.append($("<td></td>").html(strsex));
-      row.append($("<td></td>").html('<button id="modifybutton' + item.s_sn + '" class="modifybutton btn btn-dark" style="font-size:16px;font-weight:bold;">修改 <span class="glyphicon glyphicon-list-alt"></span></button>'));
-      row.append($("<td></td>").html('<button id="deletebutton' + item.s_sn + '" class="deletebutton btn btn-danger" style="font-size:16px;font-weight:bold;">刪除 <span class="glyphicon glyphicon-trash"></span></button>'));
+      row.append($("<td></td>").html('<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modify" data-bs-whatever="@mdo">修改</button>'));
+      row.append($("<td></td>").html('<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="@mdo">刪除</button>'));
       $("#cardtable").append(row);
   });
 }
