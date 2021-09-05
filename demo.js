@@ -104,8 +104,8 @@ function refreshTable(data) {
       row.append($("<td></td>").html(item.cnname));
       row.append($("<td></td>").html(item.enname));
       row.append($("<td></td>").html(strsex));
-      row.append($("<td></td>").html('<button id="modifybutton' + item.s_sn + '" class="modifybutton" style="font-size:16px;font-weight:bold;">修改 <span class="glyphicon glyphicon-list-alt"></span></button>'));
-      row.append($("<td></td>").html('<button id="deletebutton' + item.s_sn + '" class="deletebutton" style="font-size:16px;font-weight:bold;">刪除 <span class="glyphicon glyphicon-trash"></span></button>'));
+      row.append($("<td></td>").html('<button id="modifybutton' + item.s_sn + '" class="modifybutton btn btn-dark" style="font-size:16px;font-weight:bold;">修改 <span class="glyphicon glyphicon-list-alt"></span></button>'));
+      row.append($("<td></td>").html('<button id="deletebutton' + item.s_sn + '" class="deletebutton btn btn-danger" style="font-size:16px;font-weight:bold;">刪除 <span class="glyphicon glyphicon-trash"></span></button>'));
       $("#cardtable").append(row);
   });
 }
