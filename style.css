@@ -6,19 +6,22 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url(./img/login_bg.png);
+  /* background-image: url(./img/login_bg.png); */
+  /* padding: 10px; */
 }
 
 .tile{
   font-size: 22px;
 }
 
-.table{
-  border: 4px solid #000;
+table{
+  width: 1600px;
+  overflow: hidden;
+  margin: 0 auto;
 }
 
 .table th{
-  border: 2px solid #fff;
+  border: 2px solid gray;
   background-color: #333;
   color: #fff;
 }
@@ -29,10 +32,34 @@ body{
 }
 
 .table td{
-  border: 2px solid #fff;
-  background-color: lightgray;
+  border: 2px solid gray;
+  /* background-color: lightgray; */
 }
 
-.modal-header{
-  background-color: lightgray;
+td, th{
+  position: relative;
+}
+
+/* Row */
+td:hover::before { 
+  background-color: #eee;
+  content: '';  
+  height: 100%;
+  left: -5000px;
+  position: absolute;  
+  top: 0;
+  width: 10000px;   
+  z-index: -2;        
+}
+
+/* Column */
+td:hover::after { 
+  background-color: #ffa;
+  content: '';  
+  height: 10000px;    
+  left: 0;
+  position: absolute;  
+  top: -5000px;
+  width: 100%;
+  z-index: -3;        
 }
