@@ -55,59 +55,50 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form class="row g-3 needs-validation">
-            <div class="col-md-4 position-relative">
-              <label for="validationTooltip01" class="form-label">First name</label>
-              <input type="text" class="form-control" id="validationTooltip01" value="Mark" required>
-              <div class="valid-tooltip">
-                Looks good!
+
+          <form method="post">
+            <div class="formcnname">
+              <div>
+                <label>中文姓名</label> <input name="cnname" style="width: 100%" type="text" id="secnname"
+                  class="form-control">
               </div>
             </div>
-            <div class="col-md-4 position-relative">
-              <label for="validationTooltip02" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="validationTooltip02" value="Otto" required>
-              <div class="valid-tooltip">
-                Looks good!
+
+            <div class="formenname">
+              <div>
+                <label>英文姓名</label> <input name="enname" style="width: 100%" type="text" id="seenname"
+                  class="form-control">
               </div>
             </div>
-            <div class="col-md-4 position-relative">
-              <label for="validationTooltipUsername" class="form-label">Username</label>
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
-                <input type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
-                <div class="invalid-tooltip">
-                  Please choose a unique and valid username.
-                </div>
+
+            <div class="formsex">
+              <label>性別</label>
+              <div>
+                <label><input type="radio" name="sesex" value="man" class="seradio" checked="checked">男</label> <label><input type="radio"
+                    name="sesex" value="woman" class="seradio">女</label>
               </div>
             </div>
-            <div class="col-md-6 position-relative">
-              <label for="validationTooltip03" class="form-label">City</label>
-              <input type="text" class="form-control" id="validationTooltip03" required>
-              <div class="invalid-tooltip">
-                Please provide a valid city.
+
+            <div class="formphone">
+              <div>
+                <label>手機</label> <input name="phone" style="width: 100%" type="text" id="seenphone"
+                  class="form-control">
               </div>
             </div>
-            <div class="col-md-3 position-relative">
-              <label for="validationTooltip04" class="form-label">State</label>
-              <select class="form-select" id="validationTooltip04" required>
-                <option selected disabled value="">Choose...</option>
-                <option>...</option>
-              </select>
-              <div class="invalid-tooltip">
-                Please select a valid state.
+
+            <div class="formemail">
+              <div>
+                <label>電子信箱</label> <input name="email" style="width: 100%" type="text" id="seenemail"
+                  class="form-control">
               </div>
             </div>
-            <div class="col-md-3 position-relative">
-              <label for="validationTooltip05" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="validationTooltip05" required>
-              <div class="invalid-tooltip">
-                Please provide a valid zip.
-              </div>
-            </div>
-            <div class="col-12">
-              <button class="btn btn-primary" type="submit">Submit form</button>
-            </div>
+
           </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">新增</button>
+          <button type="button" class="btn btn-secondary">重新填寫</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
         </div>
       </div>
     </div>

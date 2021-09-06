@@ -7,7 +7,6 @@ body{
   flex-direction: column;
   align-items: center;
   /* background-image: url(./img/login_bg.png); */
-  /* padding: 10px; */
 }
 
 .tile{
@@ -45,7 +44,7 @@ td:hover::before {
   background-color: #eee;
   content: '';  
   height: 100%;
-  left: -5000px;
+  left: -10000px;
   position: absolute;  
   top: 0;
   width: 10000px;   
@@ -59,7 +58,7 @@ td:hover::after {
   height: 10000px;    
   left: 0;
   position: absolute;  
-  top: -5000px;
+  top: -10000px;
   width: 100%;
   z-index: -3;        
 }

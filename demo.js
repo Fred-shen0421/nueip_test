@@ -22,81 +22,6 @@ $(document).ready(function () {
   modalTitle.textContent = 'New message to ' + recipient
   modalBodyInput.value = recipient
   })
-  // $("#addbutton").click(function () {
-  //     $("#dialog-addconfirm").dialog({
-  //         resizable: true,
-  //         height: $(window).height() * 0.4,// dialog視窗度
-  //         width: $(window).width() * 0.4,
-  //         modal: true,
-  //         buttons: {
-  //             // 自訂button名稱
-  //             "新增": function (e) {
-  //                 var url = "ajax/ajaxCard";
-  //                 var cnname = $("#addcnname").val();
-  //                 var enname = $("#addenname").val();
-  //                 var sex = $('input:radio:checked[name="addsex"]').val();
-  //                 var ajaxobj = new AjaxObject(url, 'json');
-  //                 ajaxobj.cnname = cnname;
-  //                 ajaxobj.enname = enname;
-  //                 ajaxobj.sex = sex;
-  //                 ajaxobj.add();
-
-  //                 e.preventDefault(); // avoid to execute the actual submit of the form.
-  //             },
-  //             "重新填寫": function () {
-  //                 $("#addform")[0].reset();
-  //             },
-  //             "取消": function () {
-  //                 $(this).dialog("close");
-  //             }
-  //         }
-  //     });
-  // })
-  // 搜尋按鈕
-  // $("#searchbutton").click(function () {
-  //     $("#dialog-searchconfirm").dialog({
-  //         resizable: true,
-  //         height: $(window).height() * 0.4,// dialog視窗度
-  //         width: $(window).width() * 0.4,
-  //         modal: true,
-  //         buttons: {
-  //             // 自訂button名稱
-  //             "搜尋": function (e) {
-  //                 var url = "ajax/ajaxCard";
-  //                 // var data = $("#searchform").serialize();
-  //                 var cnname = $("#secnname").val();
-  //                 var enname = $("#seenname").val();
-  //                 var sex = $('input:radio:checked[name="sesex"]').val();
-  //                 var ajaxobj = new AjaxObject(url, 'json');
-  //                 ajaxobj.cnname = cnname;
-  //                 ajaxobj.enname = enname;
-  //                 ajaxobj.sex = sex;
-  //                 ajaxobj.search();
-
-  //                 e.preventDefault(); // avoid to execute the actual submit of the form.
-  //             },
-  //             "重新填寫": function () {
-
-  //                 $("#searchform")[0].reset();
-  //             },
-  //             "取消": function () {
-  //                 $(this).dialog("close");
-  //             }
-  //         }
-  //     });
-  // })
-  // 修改鈕
-  // $("#cardtable").on('click', '.modifybutton', function () {
-  //     var ajaxobj = new AjaxObject(url, 'json');
-  //     ajaxobj.modify_get();
-  // })
-  // $("#cardtable").on('click', '.deletebutton', function () {
-  //     var deleteid = $(this).attr('id').substring(12);
-  //     var url = "ajax/ajaxCard";
-  //     var ajaxobj = new AjaxObject(url, 'json');
-  //     ajaxobj.id = deleteid;
-  //     ajaxobj.delete();
-  // })
 
   // 自適應視窗
   $(window).resize(function () {
@@ -108,6 +33,14 @@ $(document).ready(function () {
       $("#dialog-confirm").dialog("option", "height", dHeight);
   });
 });
+
+function conversePhone(n) {
+  let ary = n.split('');
+  ary.splice(4, 0, '-');
+  ary.splice(8, 0, '-');
+  let result = ary.join('');
+  return result;
+}
 
 function refreshTable(data) {
   // var HTML = '';
@@ -235,61 +168,6 @@ AjaxObject.prototype.delete = function () {
 response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"}]';
 refreshTable(JSON.parse(response));
 }
-  
-// document.querySelector('#email').addEventListener('blur', validateEmail);
-
-// document.querySelector('#password').addEventListener('blur', validatePassword);
-
-// document.querySelector('#username').addEventListener('blur', validateUsername);
-
-// const reSpaces = /^\S*$/;
-
-// function validateUsername() {
-//   const username = document.querySelector('#username');
-//   if (reSpaces.test(username.value)) {
-//     username.classList.remove('is-invalid');
-//     username.classList.add('is-valid');
-//     return true;
-//   } else {
-//     username.classList.remove('is-valid');
-
-//     username.classList.add('is-invalid');
-//     return false;
-//   }
-// }
-
-// function validateEmail() {
-//   const email = document.querySelector('#email');
-//   const re = /^([a-zA-Z0-9_\-?\.?]){3,}@([a-zA-Z]){3,}\.([a-zA-Z]){2,5}$/;
-
-//   if (reSpaces.test(email.value) && re.test(email.value)) {
-//     email.classList.remove('is-invalid');
-//     email.classList.add('is-valid');
-
-//     return true;
-//   } else {
-//     email.classList.add('is-invalid');
-//     email.classList.remove('is-valid');
-
-//     return false;
-//   }
-// }
-
-// function validatePassword() {
-//   const password = document.querySelector('#password');
-//   const re = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})(?=.*[!@#$%^&*])/;
-//   if (re.test(password.value) && reSpaces.test(password.value)) {
-//     password.classList.remove('is-invalid');
-//     password.classList.add('is-valid');
-
-//     return true;
-//   } else {
-//     password.classList.add('is-invalid');
-//     password.classList.remove('is-valid');
-
-//     return false;
-//   }
-// }
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
@@ -311,12 +189,3 @@ refreshTable(JSON.parse(response));
       }, false)
     })
 })()
-
-
-function conversePhone(n) {
-  let ary = n.split('');
-  ary.splice(4, 0, '-');
-  ary.splice(8, 0, '-');
-  let result = ary.join('');
-  return result;
-}
