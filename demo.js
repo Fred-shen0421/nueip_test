@@ -2,6 +2,7 @@ $(document).ready(function () {
   // alert('abc');
   var url = "ajax/ajaxCard";
   var ajaxobj = new AjaxObject(url, 'json');
+  console.log(ajaxobj);
   ajaxobj.getall();
 
   // 新增按鈕
@@ -107,6 +108,7 @@ $(document).ready(function () {
       $("#dialog-confirm").dialog("option", "height", dHeight);
   });
 });
+
 function refreshTable(data) {
   // var HTML = '';
   $("#cardtable tbody > tr").remove();
@@ -120,6 +122,8 @@ function refreshTable(data) {
       row.append($("<td></td>").html(item.cnname));
       row.append($("<td></td>").html(item.enname));
       row.append($("<td></td>").html(strsex));
+      row.append($("<td></td>").html(item.phone));
+      row.append($("<td></td>").html(item.email));
       row.append($("<td></td>").html('<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modify" data-bs-whatever="@mdo">修改</button>'));
       row.append($("<td></td>").html('<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="@mdo">刪除</button>'));
       $("#cardtable").append(row);
@@ -182,17 +186,21 @@ $("#dialog-modifyconfirm").dialog({
 */
 function AjaxObject(url, datatype) {
   this.url = url;
+  console.log(this.url);
   this.datatype = datatype;
+  console.dir(this.datatype);
 }
 AjaxObject.prototype.cnname = '';
 AjaxObject.prototype.enname= '';
 AjaxObject.prototype.sex = '';
+AjaxObject.prototype.phone = '';
+AjaxObject.prototype.email = '';
 AjaxObject.prototype.id = 0;
 AjaxObject.prototype.alertt = function () {
   alert("Alert:");
 }
 AjaxObject.prototype.getall = function () {
-response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","sex":"1"}]';
+response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0","phone":"0938337898","email":"abc@gmail.com"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0","phone":"0918301738","email":"cdn@gmail.com"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","sex":"0","phone":"0921387390","email":"btn@gmail.com"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","sex":"1","phone":"0932357198","email":"mdn@gmail.com"}]';
 refreshTable(JSON.parse(response));
 }
 AjaxObject.prototype.add = function () {
@@ -218,3 +226,86 @@ AjaxObject.prototype.delete = function () {
 response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"}]';
 refreshTable(JSON.parse(response));
 }
+  
+document.querySelector('#email').addEventListener('blur', validateEmail);
+
+document.querySelector('#password').addEventListener('blur', validatePassword);
+
+document.querySelector('#username').addEventListener('blur', validateUsername);
+
+const reSpaces = /^\S*$/;
+
+function validateUsername(e) {
+  const username = document.querySelector('#username');
+  if (reSpaces.test(username.value)) {
+    username.classList.remove('is-invalid');
+    username.classList.add('is-valid');
+    return true;
+  } else {
+    username.classList.remove('is-valid');
+
+    username.classList.add('is-invalid');
+    return false;
+  }
+}
+
+function validateEmail(e) {
+  const email = document.querySelector('#email');
+  const re = /^([a-zA-Z0-9_\-?\.?]){3,}@([a-zA-Z]){3,}\.([a-zA-Z]){2,5}$/;
+
+  if (reSpaces.test(email.value) && re.test(email.value)) {
+    email.classList.remove('is-invalid');
+    email.classList.add('is-valid');
+
+    return true;
+  } else {
+    email.classList.add('is-invalid');
+    email.classList.remove('is-valid');
+
+    return false;
+  }
+}
+
+function validatePassword() {
+  const password = document.querySelector('#password');
+  const re = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})(?=.*[!@#$%^&*])/;
+  if (re.test(password.value) && reSpaces.test(password.value)) {
+    password.classList.remove('is-invalid');
+    password.classList.add('is-valid');
+
+    return true;
+  } else {
+    password.classList.add('is-invalid');
+    password.classList.remove('is-valid');
+
+    return false;
+  }
+}
+
+(function () {
+  const forms = document.querySelectorAll('.needs-validation');
+
+  for (let form of forms) {
+    form.addEventListener(
+      'submit',
+      function (event) {
+        if (
+          !form.checkValidity() ||
+          !validateEmail() ||
+          !validateUsername() ||
+          !validatePassword()
+        ) {
+          event.preventDefault();
+          event.stopPropagation();
+        } else {
+          form.classList.add('was-validated');
+        }
+      },
+      false
+    );
+  }
+})();
+
+$(function () {
+  $("[data-toggle='tooltip']").tooltip();
+});

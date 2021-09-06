@@ -33,9 +33,11 @@
     <table id="cardtable" cellpadding='0' cellspacing='0' border='2' bordercolor='white' width="100%">
       <thead>
         <tr>
-          <th>中文名字</th>
+          <th data-original-title="111" data-toggle="tooltip" data-placement="bottom" class="matrisHeader" data-container="body" title="">中文名字</th>
           <th>英文名字</th>
           <th>性別</th>
+          <th>手機</th>
+          <th>電子信箱</th>
           <th>修改</th>
           <th>刪除</th>
         </tr>
@@ -53,32 +55,31 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" id="addform">
-            <div class="formcnname">
-              <div>
-                <label>中文姓名</label> <input name="cnname" style="width: 100％" type="text" id="addcnname"
-                  class="form-control">
-              </div>
+          <form id="newform" action="#" class="needs-validation" novalidate>
+
+
+            <div class="form-group p-1">
+                <label for="username"> Username </label>
+
+                <input type="text" class="form-control" id="username" name="username" required />
+
+                <div class="invalid-feedback">username can`t username cannot be blank or have space</div>
+                <div class="valid-feedback">Looks Good</div>
+
             </div>
-            <div class="formenname">
-              <div>
-                <label>英文姓名</label> <input name="enname" style="width: 100％" type="text" id="addenname"
-                  class="form-control">
-              </div>
+            <div class="form-group p-1">
+                <label for="email"> Email </label>
+                <input type="email" class="form-control" name="email" id="email" required />
+                <div id="email-validation" class="invalid-feedback">Please Check Mail again.</div>
+
             </div>
-            <div class="formsex">
-              <label>性別</label>
-              <div>
-                <label><input type="radio" name="addsex" value="man" class="radio" checked="checked">男</label> <label><input
-                    type="radio" name="addsex" value="woman" class="radio">女</label>
-              </div>
+            <div class="form-group p-1">
+                <label for="password"> Password </label>
+                <input type="password" class="form-control" name="password" id="password" required />
+                <div class="invalid-feedback">Please make sure your password contains at least (a Capital letter, a number and a special charcter).</div>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">新增</button>
-          <button type="button" class="btn btn-secondary">重新填寫</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+            <button type="submit" class=" mt-4 d-block w-100 btn btn-primary">Submit</button>
+        </form>
         </div>
       </div>
     </div>
@@ -93,6 +94,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+
           <form method="post">
             <div class="formcnname">
               <div>
@@ -100,12 +102,14 @@
                   class="form-control">
               </div>
             </div>
+
             <div class="formenname">
               <div>
                 <label>英文姓名</label> <input name="enname" style="width: 100%" type="text" id="seenname"
                   class="form-control">
               </div>
             </div>
+
             <div class="formsex">
               <label>性別</label>
               <div>
@@ -113,6 +117,21 @@
                     name="sesex" value="woman" class="seradio">女</label>
               </div>
             </div>
+
+            <div class="formphone">
+              <div>
+                <label>手機</label> <input name="phone" style="width: 100%" type="text" id="seenphone"
+                  class="form-control">
+              </div>
+            </div>
+
+            <div class="formemail">
+              <div>
+                <label>電子信箱</label> <input name="email" style="width: 100%" type="text" id="seenemail"
+                  class="form-control">
+              </div>
+            </div>
+
           </form>
         </div>
         <div class="modal-footer">
@@ -154,6 +173,20 @@
               <div>
                 <label><input type="radio" name="mosex" value="man" class="radio" id="modifyman">男</label> <label><input
                     type="radio" name="mosex" value="woman" class="radio" id="modifywoman">女</label>
+              </div>
+            </div>
+
+            <div class="formphone">
+              <div>
+                <label>手機</label> <input name="phone" style="width: 100%" type="text" id="seenphone"
+                  class="form-control">
+              </div>
+            </div>
+
+            <div class="formemail">
+              <div>
+                <label>電子信箱</label> <input name="email" style="width: 100%" type="text" id="seenemail"
+                  class="form-control">
               </div>
             </div>
       
@@ -204,6 +237,20 @@
                     type="radio" name="mosex" value="woman" class="radio" id="modifywoman">女</label>
               </div>
             </div>
+
+            <div class="formphone">
+              <div>
+                <label>手機</label> <input name="phone" style="width: 100%" type="text" id="seenphone"
+                  class="form-control">
+              </div>
+            </div>
+
+            <div class="formemail">
+              <div>
+                <label>電子信箱</label> <input name="email" style="width: 100%" type="text" id="seenemail"
+                  class="form-control">
+              </div>
+            </div>
       
             <div class="formsid" style="display: none">
               <input name="sid" id="modifysid">
@@ -230,7 +277,7 @@
       ✓  1. 美化它，並說明要表達的感覺/主題，訂定的風格、配色
       ✓  2. 將index.html中的js程式碼分離成檔案demo.js，並增加style.css檔案
       ✓  3. 刪除鍵補上確認Dialog，且新增/修改/刪除的dialog使用bootstrap Modal實現 (bootstrap取代jQueryUI)
-      4. 表格(table)奇偶數列而有不同的底色，且滑鼠移到表格資料上時，以滑鼠指到的格子為中心，十字線上的 列/欄 都要變色 (列欄變色各得分50%)
+      ✓  4. 表格(table)奇偶數列而有不同的底色，且滑鼠移到表格資料上時，以滑鼠指到的格子為中心，十字線上的 列/欄 都要變色 (列欄變色各得分50%)
         |   | 色  |   |    |
         | 色 | 鼠 | 色 | 色 |
         |   | 色  |   |    |
